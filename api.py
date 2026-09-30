@@ -94,6 +94,16 @@ app = FastAPI(title="Gestor Finanzas API", version="1.0.0")
 bearer = HTTPBearer(auto_error=False)
 
 
+@app.get("/")
+def root():
+    return {
+        "message": "Gestor Finanzas API funcionando",
+        "status": "ok",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
+
 def crear_token(user_id: int) -> str:
     if not JWT_SECRET:
         raise HTTPException(
